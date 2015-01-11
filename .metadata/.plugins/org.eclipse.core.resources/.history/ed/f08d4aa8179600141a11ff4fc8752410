@@ -1,0 +1,17 @@
+
+public class ItemRunnableDemo implements Runnable{
+
+	private Thread itemThread;
+	private String itemThreadName;
+	private String containerThreadName;
+	
+	ItemRunnableDemo(String containerName){
+		containerThreadName = containerName;
+	}
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

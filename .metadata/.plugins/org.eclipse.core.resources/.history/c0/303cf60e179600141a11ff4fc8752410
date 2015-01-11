@@ -1,0 +1,57 @@
+import java.util.List;
+import java.util.ArrayList;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.RejectedExecutionHandler;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+
+public class TestThread {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		List<String> containerArray = new ArrayList<>();
+		containerArray.add("container-1");
+		containerArray.add("container-2");
+
+//		for (int i = 0; i < containerArray.size(); i++) {
+//			RunnableDemo R1 = new RunnableDemo(containerArray.get(i));
+//			R1.start();
+//		}
+		
+		Integer threadCounter = 0;
+		BlockingQueue<Runnable> blockingQueue = new ArrayBlockingQueue<>(2);
+		CustomThreadPoolExecutor executor = new CustomThreadPoolExecutor(2, 2, 5000, TimeUnit.MILLISECONDS, blockingQueue);
+		executor.setRejectedExecutionHandler(new RejectedExecutionHandler() {
+			
+			@Override
+			public void rejectedExecution(Runnable r, ThreadPoolExecutor executor) {
+				System.out.println("DemoTask Rejected: "+((RunnableDemo) r).getName());
+				System.out.println("waiting for a second !!");
+				try {
+					Thread.sleep(1000);					
+				} catch(InterruptedException e) {
+					e.printStackTrace();
+					
+				}
+				System.out.println("Lets add another time : "+((RunnableDemo) r).getName());
+				executor.execute(r);
+			}
+		});
+		
+		executor.prestartAllCoreThreads();
+		while (true){
+			threadCounter++;
+			System.out.println("Adding RunnableDemo task: "+threadCounter);
+			executor.execute(new RunnableDemo(threadCounter.toString()));
+			
+			if(threadCounter == 3){
+				break;
+			}
+				
+		}
+	}
+
+}

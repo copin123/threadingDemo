@@ -1,0 +1,23 @@
+import java.io.File;
+
+
+public class fileWriterServie {
+	String fileLocation = "/tmp/testFile";
+	public File myFile = new File(fileLocation);
+
+	public syncronized File getMyFile() {
+		return myFile;
+	}
+
+	public void setMyFile(File myFile) {
+		this.myFile = myFile;
+	}
+	
+//	File file=new File(filePath);
+//	synchronized(theInstanceOfSynchronizationObject) {
+//	  if(file.exists()) {
+//	  } else {
+//	  }
+//	}
+
+}

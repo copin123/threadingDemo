@@ -1,0 +1,20 @@
+import java.util.List;
+import java.util.ArrayList;
+
+public class TestThread {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		List<String> containerArray = new ArrayList<>();
+		containerArray.add("container-1");
+		containerArray.add("container-2");
+
+//		for (int i = 0; i < containerArray.size(); i++) {
+//			RunnableDemo R1 = new RunnableDemo(containerArray.get(i));
+//			R1.start();
+//		}
+	}
+
+}

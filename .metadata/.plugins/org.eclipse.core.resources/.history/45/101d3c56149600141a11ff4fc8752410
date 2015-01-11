@@ -1,0 +1,14 @@
+import java.io.File;
+
+
+public class fileWriterServie {
+	public File myFile;
+	
+//	File file=new File(filePath);
+//	synchronized(theInstanceOfSynchronizationObject) {
+//	  if(file.exists()) {
+//	  } else {
+//	  }
+//	}
+
+}
